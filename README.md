@@ -146,9 +146,9 @@ Dashboard 시각화
 ## 3. 시스템 구성도
 
 <p align="center">
-  <img src="docs/images/system_architecture.png"
-       width="900"
-       alt="시스템 구성도">
+  <img src="docs/images/system_flowchart.png"
+       width="696"
+       alt="시스템 동작 흐름도">
 </p>
 
 ---
