@@ -16,6 +16,28 @@ from src.ui.run_replay import ReplayCursor, build_replay_events
 
 
 class InspectionDashboardTests(unittest.TestCase):
+    def test_selected_plane_judgement_is_independent_of_cycle_defect(self):
+        from types import SimpleNamespace
+        from unittest.mock import MagicMock
+        try:
+            from src.ui.industrial_dashboard import IndustrialDashboard
+        except ImportError as exc:
+            self.skipTest(f"UI dependencies unavailable: {exc}")
+        dashboard = MagicMock()
+        dashboard.view = SimpleNamespace(
+            judgement="NG", product="GRAY", stage="COMPLETE", ply=None,
+            run_dir=Path("/tmp/run"),
+            poses=[SimpleNamespace(judgement=value, score=.01, threshold=.02,
+                                   roll=0, pitch=0, z=25, status="COMPLETE")
+                   for value in ("OK", "NG", "RECHECK")],
+        )
+        dashboard.reveal = 6
+        dashboard.image_generation = 0
+        for index, expected in ((0, "NORMAL"), (1, "DEFECT"), (2, "RECHECK"), (0, "NORMAL")):
+            with self.subTest(index=index, expected=expected):
+                IndustrialDashboard._show_pose(dashboard, index)
+                dashboard.result_panel.set_result.assert_called_with(expected, visible=True)
+
     def test_presenter_reads_production_result_without_control_imports(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary); (root / "rgb.png").touch()

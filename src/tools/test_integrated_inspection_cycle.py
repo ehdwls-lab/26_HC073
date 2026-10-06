@@ -193,6 +193,8 @@ def _validate_static(args: argparse.Namespace) -> tuple[
         raise ValueError("adaptive mode requires --z-start, --z-coarse-step, and --z-fine-step")
     if not adaptive_requested and args.z_candidates is None:
         raise ValueError("provide --z-candidates or all adaptive Z options")
+    if not math.isclose(args.scan_z, 0.0, rel_tol=0.0, abs_tol=1e-9):
+        raise ValueError("production structured-light scan_z must be 0")
     if args.scan_z > args.z_max:
         raise ValueError("scan_z must not exceed the user-provided z_max")
     if args.safe_z < ORIENTATION_SAFE_Z_MIN_CM:
@@ -256,7 +258,7 @@ def _validate_static(args: argparse.Namespace) -> tuple[
     return conveyor_config, z_config, wait_config, quality_config, structured_config
 
 
-def run(args: argparse.Namespace, *, confirmation_input=None) -> int:
+def run(args: argparse.Namespace, *, confirmation_input=None, preview_sink=None) -> int:
     try:
         conveyor_config, z_config, wait_config, quality_config, structured_config = _validate_static(args)
     except (OSError, TypeError, ValueError) as exc:
@@ -352,6 +354,8 @@ def run(args: argparse.Namespace, *, confirmation_input=None) -> int:
         confirm=lambda _: True,
     )
     camera = OrbbecCameraController()
+    camera.preview_sink = preview_sink
+    camera.continuous_preview = preview_sink is not None
     runner = ShellStructuredLightRunner(structured_config, projector=projector)
     evaluator = SurfaceReadinessEvaluator(quality_config)
     z_search = HardwareAutomaticZSearch(

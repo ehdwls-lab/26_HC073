@@ -9,6 +9,7 @@ from src.ui.image_utils import ndarray_to_qimage
 
 class ImagePanel(QWidget):
     def __init__(self, title: str):
+        self._pixmap = None
         super().__init__()
         self.title = QLabel(title.upper())
         self.title.setObjectName("panelTitle")
@@ -25,7 +26,9 @@ class ImagePanel(QWidget):
         self._rescale()
 
     def _rescale(self):
-        if self._pixmap is None:
+        if not hasattr(self, "image"):
+            return
+        if getattr(self, "_pixmap", None) is None:
             self.image.setText("NO DATA"); self.image.setPixmap(QPixmap()); return
         self.image.setText("")
         self.image.setPixmap(self._pixmap.scaled(

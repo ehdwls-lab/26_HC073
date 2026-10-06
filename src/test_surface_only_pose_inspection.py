@@ -375,8 +375,11 @@ def depth_frame_to_mm(depth_frame):
 def wait_for_aligned_pair(
     pipeline: Pipeline,
     align_filter: AlignFilter,
+    *, stop_event=None,
 ):
     while True:
+        if stop_event is not None and stop_event.is_set():
+            raise InterruptedError("camera acquisition stopped")
         frames = pipeline.wait_for_frames(
             FRAME_TIMEOUT_MS
         )

@@ -34,7 +34,7 @@ portable paths, launch policy, preflight, and machine-readable metadata.
 Canonical subsystem root:
 
 ```text
-/home/dongjin/defect_detection/서영 파트 파일
+<repository-root>/서영 파트 파일
 ```
 
 The scripts use their own directory by default. `STRUCTURED_LIGHT_ROOT` may override it.

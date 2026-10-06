@@ -1,3 +1,6 @@
 # Optional observer-only dashboard dependencies.
 -r requirements.txt
 PySide6>=6.5,<7
+# Isolated current-run PLY renderer (versions in the verified project venv).
+pyvista==0.48.4
+vtk==9.6.2

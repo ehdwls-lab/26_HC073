@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import math
 import os
 import shutil
@@ -392,10 +393,22 @@ class IntegratedInspectionCycle:
             result.projector_cover_closed = True
         self._stage(result, IntegratedCycleStage.PROJECTOR_COVER_CLOSE)
 
-    @staticmethod
-    def _stage(result: IntegratedCycleResult, stage: IntegratedCycleStage) -> None:
+    def _stage(self, result: IntegratedCycleResult, stage: IntegratedCycleStage) -> None:
         result.stage = stage.value
         result.stage_history.append(stage.value)
+        # Optional observer only; never let display failures affect inspection decisions.
+        try:
+            sink = getattr(self.camera, "preview_sink", None)
+            if sink is not None and hasattr(sink, "update_metadata"):
+                plane = result.inspection_planes[-1] if result.inspection_planes else {}
+                sink.update_metadata(
+                    stage=stage.value, pose_index=len(result.inspection_planes) - 1,
+                    roll=plane.get("actual_platform_roll_deg"),
+                    pitch=plane.get("actual_platform_pitch_deg"),
+                    z=plane.get("actual_platform_z_cm"),
+                )
+        except Exception:
+            logging.getLogger(__name__).warning("[UI WARNING] preview unavailable")
 
     @staticmethod
     def _pose_clamped(pose: Any) -> bool:

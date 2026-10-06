@@ -19,13 +19,28 @@ __pycache__/
 # =========================
 # 학습 / 촬영 데이터
 # =========================
-data/
+# Keep only the two small production validation manifests. Their RGB/mask
+# inputs remain external runtime data under results/.
+/data/*
+!/data/manifests/
+/data/manifests/*
+!/data/manifests/gray_v2/
+!/data/manifests/blue_v1_rot180/
+/data/manifests/gray_v2/*
+!/data/manifests/gray_v2/val.csv
+/data/manifests/blue_v1_rot180/*
+!/data/manifests/blue_v1_rot180/val.csv
 
 # =========================
 # 학습 모델
 # =========================
 models/*.pth
 models/*.pt
+models/**/*.pth
+models/**/*.pt
+# Small, required production checkpoints are intentionally versioned.
+!models/gray_v2/best_autoencoder.pth
+!models/blue_v1/best_autoencoder.pth
 
 # =========================
 # 실행 결과
@@ -59,7 +74,16 @@ archive/results_old/
 # Runtime logs
 Log/
 *.log
+core
+core.*
+
+# Preserve past captures locally without publishing generated data.
+/archive/pending_cleanup/structured_light_samples/
 
 # Structured-light capture outputs are runtime artifacts.  The source scripts and
 # active platform calibration under the same subsystem remain versioned.
 서영 파트 파일/플랫폼 바닥 따기/구조광_전처리/샘플/촬영_*/
+
+# Production validation artifacts required for reproducible anomaly threshold
+!/data/production_validation/
+!/data/production_validation/**

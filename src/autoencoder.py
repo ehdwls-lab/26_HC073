@@ -28,7 +28,7 @@ class ConvAutoencoder(nn.Module):
         if latent_channels <= 0:
             raise ValueError("latent_channels는 양수여야 합니다.")
 
-        # 입력 Patch를 작은 특징 Map으로 압축
+        # Encoder
         self.encoder = nn.Sequential(
             # 64×64 → 32×32
             nn.Conv2d(
@@ -61,7 +61,7 @@ class ConvAutoencoder(nn.Module):
             nn.ReLU(inplace=True),
         )
 
-        # 압축된 특징 Map을 원래 Patch 크기로 복원
+        # Decoder
         self.decoder = nn.Sequential(
             # 8×8 → 16×16
             nn.ConvTranspose2d(

@@ -1,0 +1,415 @@
+{
+  "entry_point": "src/tools/run_inspection_with_ui.py",
+  "scope": "Conservative AST imports (including lazy/conditional imports and package initializers), plus explicitly reviewed subprocess/runpy edges; not a hardware trace.",
+  "modules": [
+    "src/__init__.py",
+    "src/anomaly/__init__.py",
+    "src/anomaly/detector.py",
+    "src/autoencoder.py",
+    "src/camera/__init__.py",
+    "src/camera/controller.py",
+    "src/camera/frame_pump.py",
+    "src/camera/orbbec_controller.py",
+    "src/config.py",
+    "src/conveyor/__init__.py",
+    "src/conveyor/controller.py",
+    "src/conveyor/mock_controller.py",
+    "src/conveyor/serial_controller.py",
+    "src/core/__init__.py",
+    "src/core/aruco_board.py",
+    "src/core/depth_contour_roi.py",
+    "src/core/depth_processing.py",
+    "src/core/inspection_mask.py",
+    "src/core/inspection_quality.py",
+    "src/core/patch_extractor.py",
+    "src/core/preprocessing.py",
+    "src/core/rgb_seeded_roi.py",
+    "src/core/surface_geometry.py",
+    "src/core/surface_roi.py",
+    "src/core/workspace.py",
+    "src/infer_anomaly.py",
+    "src/inspection/__init__.py",
+    "src/inspection/adaptive_pose.py",
+    "src/inspection/automatic_z_search.py",
+    "src/inspection/hardware_z_search.py",
+    "src/inspection/surface_inspector.py",
+    "src/inspection/z_search_types.py",
+    "src/integration/__init__.py",
+    "src/integration/coordinate_contract.py",
+    "src/integration/final_capture.py",
+    "src/integration/hybrid_inspection_roi.py",
+    "src/integration/inspection_failures.py",
+    "src/integration/inspection_plan.py",
+    "src/integration/integrated_inspection_cycle.py",
+    "src/integration/metric_plane_merge.py",
+    "src/integration/metric_pose.py",
+    "src/integration/metric_pose_postprocess.py",
+    "src/integration/orbbec_intrinsics.py",
+    "src/integration/platform_alignment.py",
+    "src/integration/platform_limits.py",
+    "src/integration/platform_pose_calibration.py",
+    "src/integration/pose_planner.py",
+    "src/integration/projector_controller.py",
+    "src/integration/real_pose_planner.py",
+    "src/integration/structured_light_adapter.py",
+    "src/integration/structured_light_runner.py",
+    "src/lighting/__init__.py",
+    "src/lighting/serial_controller.py",
+    "src/patch_dataset.py",
+    "src/platform/__init__.py",
+    "src/platform/controller.py",
+    "src/platform/motion_diagnostic.py",
+    "src/platform/protocol.py",
+    "src/platform/serial_controller.py",
+    "src/platform/types.py",
+    "src/preprocessing.py",
+    "src/test_surface_only_pose_inspection.py",
+    "src/tools/__init__.py",
+    "src/tools/production_motion_options.py",
+    "src/tools/run_inspection_ui.py",
+    "src/tools/run_inspection_with_ui.py",
+    "src/tools/test_integrated_inspection_cycle.py",
+    "src/ui/__init__.py",
+    "src/ui/current_object.py",
+    "src/ui/events.py",
+    "src/ui/image_utils.py",
+    "src/ui/industrial_dashboard.py",
+    "src/ui/inspection_presenter.py",
+    "src/ui/live_preview.py",
+    "src/ui/plane_assets.py",
+    "src/ui/preview_images.py",
+    "src/ui/render_ply.py",
+    "src/ui/run_replay.py",
+    "src/ui/theme.py",
+    "src/ui/widgets/__init__.py",
+    "src/ui/widgets/image_panel.py",
+    "src/ui/widgets/object_image_panel.py",
+    "src/ui/widgets/pointcloud_view.py",
+    "src/ui/widgets/result_panel.py"
+  ],
+  "imports": {
+    "src/__init__.py": [],
+    "src/anomaly/__init__.py": [
+      "src/anomaly/detector.py"
+    ],
+    "src/anomaly/detector.py": [
+      "src/config.py",
+      "src/core/surface_geometry.py",
+      "src/infer_anomaly.py",
+      "src/inspection/surface_inspector.py",
+      "src/integration/inspection_failures.py"
+    ],
+    "src/autoencoder.py": [],
+    "src/camera/__init__.py": [
+      "src/camera/controller.py",
+      "src/camera/orbbec_controller.py"
+    ],
+    "src/camera/controller.py": [],
+    "src/camera/frame_pump.py": [],
+    "src/camera/orbbec_controller.py": [
+      "src/camera/controller.py",
+      "src/camera/frame_pump.py",
+      "src/config.py",
+      "src/integration/metric_pose.py",
+      "src/integration/orbbec_intrinsics.py",
+      "src/test_surface_only_pose_inspection.py",
+      "src/ui/live_preview.py"
+    ],
+    "src/config.py": [],
+    "src/conveyor/__init__.py": [
+      "src/conveyor/controller.py",
+      "src/conveyor/mock_controller.py",
+      "src/conveyor/serial_controller.py"
+    ],
+    "src/conveyor/controller.py": [],
+    "src/conveyor/mock_controller.py": [],
+    "src/conveyor/serial_controller.py": [],
+    "src/core/__init__.py": [
+      "src/core/depth_processing.py",
+      "src/core/inspection_quality.py",
+      "src/core/patch_extractor.py",
+      "src/core/preprocessing.py",
+      "src/core/surface_roi.py"
+    ],
+    "src/core/aruco_board.py": [],
+    "src/core/depth_contour_roi.py": [
+      "src/config.py",
+      "src/core/aruco_board.py",
+      "src/core/depth_processing.py",
+      "src/core/surface_roi.py",
+      "src/core/workspace.py",
+      "src/integration/metric_pose.py",
+      "src/integration/platform_pose_calibration.py"
+    ],
+    "src/core/depth_processing.py": [],
+    "src/core/inspection_mask.py": [
+      "src/config.py"
+    ],
+    "src/core/inspection_quality.py": [
+      "src/core/surface_roi.py"
+    ],
+    "src/core/patch_extractor.py": [],
+    "src/core/preprocessing.py": [
+      "src/config.py"
+    ],
+    "src/core/rgb_seeded_roi.py": [
+      "src/core/depth_processing.py"
+    ],
+    "src/core/surface_geometry.py": [
+      "src/config.py",
+      "src/core/depth_processing.py",
+      "src/core/inspection_quality.py",
+      "src/core/patch_extractor.py",
+      "src/core/surface_roi.py",
+      "src/core/workspace.py"
+    ],
+    "src/core/surface_roi.py": [],
+    "src/core/workspace.py": [],
+    "src/infer_anomaly.py": [
+      "src/autoencoder.py",
+      "src/patch_dataset.py",
+      "src/preprocessing.py"
+    ],
+    "src/inspection/__init__.py": [
+      "src/inspection/automatic_z_search.py",
+      "src/inspection/z_search_types.py"
+    ],
+    "src/inspection/adaptive_pose.py": [],
+    "src/inspection/automatic_z_search.py": [
+      "src/inspection/z_search_types.py"
+    ],
+    "src/inspection/hardware_z_search.py": [
+      "src/camera/controller.py",
+      "src/config.py",
+      "src/core/surface_geometry.py",
+      "src/inspection/adaptive_pose.py",
+      "src/inspection/automatic_z_search.py",
+      "src/inspection/z_search_types.py",
+      "src/integration/projector_controller.py"
+    ],
+    "src/inspection/surface_inspector.py": [
+      "src/integration/inspection_plan.py"
+    ],
+    "src/inspection/z_search_types.py": [],
+    "src/integration/__init__.py": [
+      "src/integration/coordinate_contract.py",
+      "src/integration/inspection_plan.py",
+      "src/integration/pose_planner.py",
+      "src/integration/structured_light_adapter.py"
+    ],
+    "src/integration/coordinate_contract.py": [],
+    "src/integration/final_capture.py": [
+      "src/config.py",
+      "src/core/inspection_mask.py",
+      "src/core/surface_geometry.py",
+      "src/integration/inspection_failures.py"
+    ],
+    "src/integration/hybrid_inspection_roi.py": [
+      "src/config.py",
+      "src/core/aruco_board.py",
+      "src/core/workspace.py",
+      "src/integration/metric_pose.py"
+    ],
+    "src/integration/inspection_failures.py": [],
+    "src/integration/inspection_plan.py": [],
+    "src/integration/integrated_inspection_cycle.py": [
+      "src/config.py",
+      "src/core/aruco_board.py",
+      "src/core/depth_contour_roi.py",
+      "src/core/inspection_mask.py",
+      "src/core/patch_extractor.py",
+      "src/core/rgb_seeded_roi.py",
+      "src/core/surface_roi.py",
+      "src/inspection/adaptive_pose.py",
+      "src/inspection/hardware_z_search.py",
+      "src/integration/final_capture.py",
+      "src/integration/hybrid_inspection_roi.py",
+      "src/integration/inspection_failures.py",
+      "src/integration/metric_pose_postprocess.py",
+      "src/integration/platform_limits.py",
+      "src/integration/projector_controller.py",
+      "src/integration/structured_light_runner.py",
+      "src/platform/motion_diagnostic.py"
+    ],
+    "src/integration/metric_plane_merge.py": [
+      "src/integration/metric_pose.py"
+    ],
+    "src/integration/metric_pose.py": [
+      "src/integration/platform_limits.py"
+    ],
+    "src/integration/metric_pose_postprocess.py": [
+      "src/integration/metric_plane_merge.py",
+      "src/integration/metric_pose.py",
+      "src/integration/platform_alignment.py",
+      "src/integration/platform_pose_calibration.py"
+    ],
+    "src/integration/orbbec_intrinsics.py": [],
+    "src/integration/platform_alignment.py": [
+      "src/integration/platform_limits.py",
+      "src/integration/platform_pose_calibration.py"
+    ],
+    "src/integration/platform_limits.py": [],
+    "src/integration/platform_pose_calibration.py": [
+      "src/integration/platform_limits.py"
+    ],
+    "src/integration/pose_planner.py": [
+      "src/integration/inspection_plan.py"
+    ],
+    "src/integration/projector_controller.py": [],
+    "src/integration/real_pose_planner.py": [
+      "src/integration/coordinate_contract.py",
+      "src/integration/inspection_plan.py",
+      "src/integration/platform_alignment.py",
+      "src/integration/platform_pose_calibration.py"
+    ],
+    "src/integration/structured_light_adapter.py": [
+      "src/integration/coordinate_contract.py"
+    ],
+    "src/integration/structured_light_runner.py": [],
+    "src/lighting/__init__.py": [
+      "src/lighting/serial_controller.py"
+    ],
+    "src/lighting/serial_controller.py": [],
+    "src/patch_dataset.py": [
+      "src/infer_anomaly.py",
+      "src/preprocessing.py"
+    ],
+    "src/platform/__init__.py": [
+      "src/platform/controller.py",
+      "src/platform/serial_controller.py",
+      "src/platform/types.py"
+    ],
+    "src/platform/controller.py": [
+      "src/platform/types.py"
+    ],
+    "src/platform/motion_diagnostic.py": [
+      "src/platform/serial_controller.py",
+      "src/platform/types.py"
+    ],
+    "src/platform/protocol.py": [
+      "src/platform/types.py"
+    ],
+    "src/platform/serial_controller.py": [
+      "src/platform/protocol.py",
+      "src/platform/types.py"
+    ],
+    "src/platform/types.py": [],
+    "src/preprocessing.py": [],
+    "src/test_surface_only_pose_inspection.py": [],
+    "src/tools/__init__.py": [],
+    "src/tools/production_motion_options.py": [
+      "src/platform/motion_diagnostic.py"
+    ],
+    "src/tools/run_inspection_ui.py": [
+      "src/ui/industrial_dashboard.py"
+    ],
+    "src/tools/run_inspection_with_ui.py": [
+      "src/tools/run_inspection_ui.py",
+      "src/tools/test_integrated_inspection_cycle.py",
+      "src/ui/live_preview.py"
+    ],
+    "src/tools/test_integrated_inspection_cycle.py": [
+      "src/anomaly/detector.py",
+      "src/camera/orbbec_controller.py",
+      "src/config.py",
+      "src/conveyor/serial_controller.py",
+      "src/inspection/hardware_z_search.py",
+      "src/integration/final_capture.py",
+      "src/integration/integrated_inspection_cycle.py",
+      "src/integration/platform_limits.py",
+      "src/integration/projector_controller.py",
+      "src/integration/real_pose_planner.py",
+      "src/integration/structured_light_runner.py",
+      "src/lighting/serial_controller.py",
+      "src/platform/motion_diagnostic.py",
+      "src/platform/serial_controller.py",
+      "src/tools/production_motion_options.py"
+    ],
+    "src/ui/__init__.py": [],
+    "src/ui/current_object.py": [],
+    "src/ui/events.py": [],
+    "src/ui/image_utils.py": [],
+    "src/ui/industrial_dashboard.py": [
+      "src/ui/current_object.py",
+      "src/ui/inspection_presenter.py",
+      "src/ui/live_preview.py",
+      "src/ui/plane_assets.py",
+      "src/ui/preview_images.py",
+      "src/ui/run_replay.py",
+      "src/ui/theme.py",
+      "src/ui/widgets/image_panel.py",
+      "src/ui/widgets/pointcloud_view.py",
+      "src/ui/widgets/result_panel.py"
+    ],
+    "src/ui/inspection_presenter.py": [
+      "src/ui/current_object.py"
+    ],
+    "src/ui/live_preview.py": [],
+    "src/ui/plane_assets.py": [],
+    "src/ui/preview_images.py": [
+      "src/ui/image_utils.py"
+    ],
+    "src/ui/render_ply.py": [
+      "src/ui/plane_assets.py"
+    ],
+    "src/ui/run_replay.py": [
+      "src/ui/events.py"
+    ],
+    "src/ui/theme.py": [],
+    "src/ui/widgets/__init__.py": [],
+    "src/ui/widgets/image_panel.py": [
+      "src/ui/image_utils.py"
+    ],
+    "src/ui/widgets/object_image_panel.py": [
+      "src/ui/widgets/image_panel.py"
+    ],
+    "src/ui/widgets/pointcloud_view.py": [
+      "src/ui/widgets/object_image_panel.py"
+    ],
+    "src/ui/widgets/result_panel.py": [
+      "src/ui/theme.py"
+    ]
+  },
+  "dynamic_edges": [
+    {
+      "from": "src/ui/widgets/pointcloud_view.py",
+      "to": "src/ui/render_ply.py",
+      "mechanism": "QProcess: python -m src.ui.render_ply"
+    },
+    {
+      "from": "src/integration/structured_light_runner.py",
+      "to": "서영 파트 파일/물체검사.sh",
+      "mechanism": "subprocess.Popen followed by communicate"
+    },
+    {
+      "from": "서영 파트 파일/물체검사.sh",
+      "to": "서영 파트 파일/구조광_전처리_최종_v2_현재프레임플랫폼기준_Depth홀위상보강_경로수정_0822.py",
+      "mechanism": "shell Python invocation"
+    },
+    {
+      "from": "서영 파트 파일/구조광_전처리_최종_v2_현재프레임플랫폼기준_Depth홀위상보강_경로수정_0822.py",
+      "to": "서영 파트 파일/구조광_전처리_최종_v2_현재프레임플랫폼기준_Depth홀위상보강_경로수정_0822 (1).py",
+      "mechanism": "runpy.run_path"
+    },
+    {
+      "from": "서영 파트 파일/물체검사.sh",
+      "to": "서영 파트 파일/make_dc_grabcut_object_mask_latest.py",
+      "mechanism": "shell Python invocation"
+    },
+    {
+      "from": "서영 파트 파일/물체검사.sh",
+      "to": "서영 파트 파일/make_phase_relative_reunwrap_holefilled_0822.py",
+      "mechanism": "shell Python invocation"
+    },
+    {
+      "from": "서영 파트 파일/물체검사.sh",
+      "to": "서영 파트 파일/add_platform_floor_latest.py",
+      "mechanism": "shell Python invocation"
+    },
+    {
+      "from": "서영 파트 파일/물체검사.sh",
+      "to": "서영 파트 파일/0823_test.py",
+      "mechanism": "shell Python invocation"
+    }
+  ]
+}

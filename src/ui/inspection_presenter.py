@@ -29,6 +29,8 @@ class PoseView:
     board_overlay: Path | None
     depth: Path | None
     failure: str | None
+    inspection_area_px: int | None = None
+    roi_type: str | None = None
 
 
 @dataclass(frozen=True)
@@ -94,9 +96,11 @@ def load_inspection_view(run: str | Path) -> InspectionView:
             roll=_first(plane, "actual_platform_roll_deg", "selected_roll", "commanded_roll_deg"),
             pitch=_first(plane, "actual_platform_pitch_deg", "selected_pitch", "commanded_pitch_deg"),
             z=_first(plane, "actual_platform_z_cm", "best_z", "selected_z"),
-            rgb=artifact(_first(plane, "final_rgb_path") or metadata.get("rgb_path"), plane_root / "final_capture/final_rgb.png"),
+            rgb=artifact(metadata.get("rgb_path") or _first(plane, "final_rgb_path"), plane_root / "final_capture/final_rgb.png"),
             roi=artifact(plane.get("inspection_mask_overlay_path"), plane_root / "final_capture/inspection_mask_overlay.png"),
-            mask=artifact(plane.get("inspection_mask_path") or metadata.get("inspection_mask_path"), plane_root / "final_capture/inspection_mask.png"),
+            mask=_path(metadata.get("inspection_mask_path"), run_dir),
+            inspection_area_px=metadata.get("inspection_area_px"),
+            roi_type=metadata.get("anomaly_roi_type"),
             heatmap=artifact(_first(plane, "anomaly_heatmap_path") or anomaly.get("heatmap_path"), plane_root / "anomaly/anomaly_heatmap.png"),
             overlay=artifact(metadata.get("overlay_path"), plane_root / "anomaly/anomaly_overlay.png"),
             patch_overlay=artifact(_first(plane, "surface_patch_overlay_path") or metadata.get("surface_patch_overlay_path"), plane_root / "anomaly/surface_patch_overlay.png"),
@@ -109,9 +113,8 @@ def load_inspection_view(run: str | Path) -> InspectionView:
     encoded = json.dumps(data, ensure_ascii=False).lower()
     product = str(_first(data, "product", "material", "profile") or
                   ("GRAY" if "gray_" in encoded else "BLUE" if "blue_" in encoded else "--")).upper()
-    ply_candidates = sorted(run_dir.glob("structured_light/**/*.ply"))
-    preferred_ply = next((path for path in ply_candidates if "dominant_plane_segmented" in path.name),
-                         ply_candidates[0] if ply_candidates else None)
+    from src.ui.current_object import current_object_ply
+    preferred_ply = current_object_ply(run_dir)
     return InspectionView(
         run_dir=run_dir, run_name=run_dir.name, product=product, status=status, judgement=judgement,
         stage=str(data.get("stage") or status), started_at=data.get("started_at"),
