@@ -1,4 +1,4 @@
-<img width="696" height="720" alt="image" src="https://github.com/user-attachments/assets/431d3516-80e5-466f-a5cf-0828827352be" /># 26_HC073
+# 26_HC073
 
 ## Active Vision 및 구조광 기반 비정형 부품 정밀 검사 자동화 시스템
 
@@ -145,13 +145,12 @@ Dashboard 시각화
 
 ## 3. 시스템 구성도
 
-### 3-1. 시스템 동작 흐름
+<p align="center">
+  <img src="docs/images/system_architecture.png"
+       width="900"
+       alt="시스템 구성도">
+</p>
 
-![시스템 동작 흐름](docs/images/system_flowchart.png)
-
-### 3-2. 하드웨어 시스템 구성도
-
-![하드웨어 시스템 구성도](docs/images/system_architecture.png)
 ---
 
 ## 4. 작품 소개영상
