@@ -1,4 +1,4 @@
-# 26_HC073
+<img width="696" height="720" alt="image" src="https://github.com/user-attachments/assets/431d3516-80e5-466f-a5cf-0828827352be" /># 26_HC073
 
 ## Active Vision 및 구조광 기반 비정형 부품 정밀 검사 자동화 시스템
 
@@ -145,24 +145,13 @@ Dashboard 시각화
 
 ## 3. 시스템 구성도
 
-```mermaid
-flowchart LR
-    A[검사체 투입] --> B[컨베이어]
-    B --> C[차광 검사 영역]
-    C --> D[Structured Light]
-    D --> E[3D Point Cloud]
-    E --> F[검사면 및 법선 분석]
-    F --> G[Inspection Pose]
-    G --> H[Roll / Pitch / Z]
-    H --> I[RGB + Depth]
-    I --> J[Inspection ROI]
-    J --> K[64×64 Patch]
-    K --> L[Autoencoder]
-    L --> M[NORMAL / DEFECT]
-    M --> N[PySide6 Dashboard]
-    N --> O[컨베이어 배출]
-```
+### 3-1. 시스템 동작 흐름
 
+![시스템 동작 흐름](docs/images/system_flowchart.png)
+
+### 3-2. 하드웨어 시스템 구성도
+
+![하드웨어 시스템 구성도](docs/images/system_architecture.png)
 ---
 
 ## 4. 작품 소개영상
