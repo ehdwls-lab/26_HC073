@@ -19,8 +19,7 @@ __pycache__/
 # =========================
 # 학습 / 촬영 데이터
 # =========================
-# Keep only the two small production validation manifests. Their RGB/mask
-# inputs remain external runtime data under results/.
+# Keep only the two production validation manifests and their RGB/mask inputs.
 /data/*
 !/data/manifests/
 /data/manifests/*
@@ -87,3 +86,29 @@ core.*
 # Production validation artifacts required for reproducible anomaly threshold
 !/data/production_validation/
 !/data/production_validation/**
+
+# Local working rules, regression tests, diagnostic tools, and their PLY fixtures.
+# These remain on this PC but are outside the production GitHub submission.
+/AGENTS.md
+/tests/
+/assets/ui/
+/src/system/
+/src/inspection/mock_quality_sampler.py
+/src/integration/mock_pose_planner.py
+/src/platform/mock_controller.py
+/src/tools/analyze_capture_quality.py
+/src/tools/build_production_normal_manifest.py
+/src/tools/capture_multiview_normal.py
+/src/tools/check_structured_light.py
+/src/tools/inspect_color_controls.py
+/src/tools/live_roi_debug.py
+/src/tools/measure_depth_plane_angle.py
+/src/tools/measure_metric_pose.py
+/src/tools/read_platform_telemetry.py
+/src/tools/test_automatic_z_hardware.py
+/src/tools/test_conveyor_serial.py
+/src/tools/test_orbbec_camera.py
+/src/tools/test_platform_motion.py
+/src/tools/test_projector_blackout.py
+/src/tools/test_real_pose_planner.py
+/src/tools/test_structured_light_projector.py
