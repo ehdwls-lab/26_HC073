@@ -51,7 +51,7 @@ from src.tools.production_motion_options import (
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_SUBSYSTEM_ROOT = REPOSITORY_ROOT / "서영 파트 파일"
+DEFAULT_SUBSYSTEM_ROOT = REPOSITORY_ROOT / "structured_light"
 PRODUCTION_AUTOMATIC_Z_START_CM = ORIENTATION_SAFE_Z_MIN_CM
 PRODUCTION_AUTOMATIC_Z_STEP_CM = 1.0
 

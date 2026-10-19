@@ -39,7 +39,7 @@ class OpenCVProjectorController:
 
     @staticmethod
     def _generator() -> Callable[[int, int], dict[str, np.ndarray]]:
-        subsystem = Path(__file__).resolve().parents[2] / "서영 파트 파일"
+        subsystem = Path(__file__).resolve().parents[2] / "structured_light"
         if str(subsystem) not in sys.path:
             sys.path.insert(0, str(subsystem))
         from structured_light_projector import production_phase_patterns

@@ -11,7 +11,7 @@ Orbbec Gemini 336L, 구조광, 3축 플랫폼, 정상 데이터 기반 Autoencod
 5. 표면 ROI의 64×64 패치(간격 32)에 Autoencoder 추론을 적용해 결함을 판정하고, 현재 run의 PLY·이미지·결과를 Dashboard에 표시합니다.
 6. LED를 끄고 플랫폼을 안전 자세로 복귀시킨 뒤 컨베이어로 검사체를 배출합니다.
 
-검사·제어 코드는 `src/`, 구조광 촬영과 후처리는 `서영 파트 파일/`에 있습니다. 핵심 진입점은 `src/tools/run_inspection_with_ui.py`입니다.
+검사·제어 코드는 `src/`, 구조광 촬영과 후처리는 `structured_light/`에 있습니다. 핵심 진입점은 `src/tools/run_inspection_with_ui.py`입니다.
 
 ## 실행 환경과 설치
 
@@ -45,8 +45,8 @@ python -m pip install -r requirements-ui.txt
 | 용도 | 파일 |
 |---|---|
 | Auto-Z 품질 | `config/automatic_z_quality.json` |
-| 프로젝터 범위 | `서영 파트 파일/프로젝터 수동 범위 확인/프로젝터_세로범위.json` |
-| 빈 플랫폼 Depth | `서영 파트 파일/플랫폼 바닥 따기/현재배치_기준데이터/active/E1999_G64/플랫폼_바닥_depth.npy` |
+| 프로젝터 범위 | `structured_light/프로젝터 수동 범위 확인/프로젝터_세로범위.json` |
+| 빈 플랫폼 Depth | `structured_light/플랫폼 바닥 따기/현재배치_기준데이터/active/E1999_G64/플랫폼_바닥_depth.npy` |
 
 ## 모델과 Validation
 
